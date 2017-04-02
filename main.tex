@@ -15,6 +15,7 @@
 \usepackage{braket} 
 \usepackage{subcaption}
 \usepackage{xcolor}
+\usepackage{graphicx}
 \renewcommand{\thefootnote}{\Roman{footnote}}
 \newcommand{\red}[1]{ {\color{red} #1}}
 \date{February 2017}
@@ -22,7 +23,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-    Most work on interactions for molecular junctions have been performed within the Master equation approach. This approach has the benefit of incorporating vibrational excitations and interactions up to desired order. In this work we focus on the non-equilibrium Green's function formalism. We incorporate interactions and derive the many-body Green's function. The density matrix emerges as a self-consistent equation that is in principle exactly solvable. We first apply these principles to the case of a coulomb Island, a much studied and discussed nanoscopic device.  Having established both the basics {\color{red}and the Kondo physics of this device}, we move on to consider the intrinsic and pronounced NDC effect in a single thiolated arylethynylene molecule with a 9,10-dihydroanthracene. We show that incorporation of strong capacitive interaction greatly improves the agreement between theory and experiment. The new theory has exciting promise for future studies of molecular junctions.
+    Most work on interactions for molecular junctions have been performed within the Master equation approach. This approach has the benefit of incorporating vibrational excitations and interactions up to desired order. In this work we focus on the non-equilibrium Green's function formalism. We incorporate interactions and derive the many-body Green's function. The density matrix emerges as a self-consistent equation that is in principle exactly solvable. We first apply these principles to the case of a coulomb Island, a much studied and discussed nanoscopic device.  Having established both the basics and the Kondo physics of this device, we move on to consider the intrinsic and pronounced NDC effect in a single thiolated arylethynylene molecule with a 9,10-dihydroanthracene. We show that incorporation of strong capacitive interaction greatly improves the agreement between theory and experiment. The new theory has exciting promise for future studies of molecular junctions.
 \end{abstract}
 \begin{multicols}{2}
     
@@ -119,23 +120,64 @@
         The vector of occupation numbers can also be obtained from the (many-body) lesser Green's function at $t=t'$:
         \begin{align} 
             \braket{n_i} &= \sum_{\kappa: i \in \kappa} \braket{n_\kappa d_i^\dagger (t) d_i (t)} \nonumber\\ 
-            &= \sum_{\kappa: i \in \kappa} \sum_{\lambda \supseteq \kappa} P_\lambda \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} G^{\lambda<}_{ii} (\epsilon) \nonumber\\
-            &= \sum_{\kappa: i \in \kappa} \sum_{\lambda \supseteq \kappa} P_\lambda \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}_{ii} (\epsilon) \Gamma^\alpha G^{\lambda-}_{ii} (\epsilon)\right] \nonumber\\ 
+            &= \sum_{\kappa: i \in \kappa} \sum_{\lambda \supseteq \kappa} P_\lambda \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \left(-G^{\lambda<}_{ii} (\epsilon)\right) \nonumber\\
+            &= \sum_{\kappa: i \in \kappa} \sum_{\lambda \supseteq \kappa} P_\lambda \int^\infty_{-\infty} \frac{d\epsilon}{2\pi} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}(\epsilon) \Gamma^\alpha G^{\lambda-}(\epsilon)\right]_{ii} \nonumber\\ 
             &= \sum_\kappa W_{i\kappa} P_\kappa, \label{eq:wmatrix}
         \end{align}
-        where the lesser self-energy is substituted from the fluctuation-dissipation theorem. Applying this theorem requires that the states are explicitly known for the many-body system, something that we have already assumed with not mixing eigenstates.       
+        where the lesser self-energy is substituted from both the Keldysh equation~\cite{diventra} and the fluctuation-dissipation theorem~\cite{haugjauho}. Applying this theorem requires that the states are explicitly known for the many-body system, something that we have already assumed with not mixing eigenstates.       
         
         The matrix element $W_{i\beta}$ is defined as:
         \begin{align*}
-        W_{i\beta} &= \sum_{\kappa: i \in \kappa} \Delta^\beta_\kappa \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}_{ii} (\epsilon) \Gamma^\alpha G^{\lambda-}_{ii} (\epsilon)\right],
-        \end{align*} where $\Delta^\beta_\kappa$ ensures only those $\kappa$ that are in the superset of $\beta$ are counted. It is important to remember that the fluctuation-dissipation theorem specified the Fermi-Dirac distribution on the \emph{contacts}, thereby introducing finite bias as a relevant parameter for the density-matrix solution. We have thus found the following equations for $\braket{\underline{n}}$:
+        W_{i\beta} &= \sum_{\kappa: i \in \kappa} \Delta^\beta_\kappa \int^\infty_{-\infty} \frac{d\epsilon}{2\pi} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\lambda+}(\epsilon) \Gamma^\alpha G^{\lambda-} (\epsilon)\right]_{ii},
+        \end{align*} where $\Delta^\beta_\kappa$ ensures only those $\kappa$ that are in the superset of $\beta$ are counted. It is important to remember that the fluctuation-dissipation theorem specified the Fermi-Dirac distribution on the \emph{contacts}, thereby introducing finite bias as a relevant parameter for the density-matrix solution. We have found the following equations for $\braket{\underline{n}}$:
         \begin{align}
             \braket{\underline{n}} &= WP = KP\label{eq:selfconsistent},
         \end{align}
-        where it cannot be guaranteed that the null-space of $W-K$ is one-dimensional. In practise, we would then use a self-consistent scheme to solve for $\braket{\underline{n}}$ starting from the equilibrium vector. This is conceptually similar to turning on the non-equilibrium interactions adiabatically, which we interpret as a variation of the Gell-Man-Low theorem\cite{gellmannlow, molinari}. However, they are not equivalent because a self-consistent scheme cannot guarantee adiabatic steps between generations.
+        where it cannot be guaranteed that the null-space of $W-K$ is one-dimensional. We could then use a self-consistent scheme to solve for $\braket{\underline{n}}$ starting from the equilibrium vector. This is conceptually similar to turning on the non-equilibrium interactions adiabatically, which could be interpreted as a variation of the Gell-Man-Low theorem\cite{gellmannlow, molinari}, yet is not because a self-consistent scheme cannot guarantee adiabatic steps.
+        
+        However, we must consider the implications of a null-space containing more than one vector. The physical quantity, $\braket{\underline{n}}$ is certainly unique. This implies that all vectors in the null-space result in the same value of the physical quantity. As a result, any vector in the null-space suffices to calculate the expectations of number occupation operators. This then immediately results in a unique green function which allows us to calculate transport properties of the equation.
 
     \section{The Coulomb Island}\label{sec:island}
-        We are now ready to perform the calculations for a Coulomb Island. Following \citet{haugjauho}, we will set $\hat{H}_\tau = 0$. 
+        We are now ready to perform the calculations for a Coulomb Island. Following \citet{haugjauho}, we will set $\hat{H}_\tau = 0$. We need to be careful with the incorporation of the leads. In the penultimate step for equation~\ref{eq:wmatrix}, we note a summation over each lead due to the fluctuation-dissipation theorem. 
+        
+        For a two-state system (spin up, spin down) we find:
+        \begin{align*}
+            G^{\lambda<}_{ii}(\epsilon) &= \left(\left|G_{1i}(\epsilon)\right|^2 + \left|G_{i2}(\epsilon)\right|^2 \right)\left(f^L (\epsilon) \gamma^L+f^R (\epsilon) \gamma^R\right),
+        \end{align*}
+        where we have used that $(G^+)^\dagger=G^-$ and that the coupling is described by a diagonal matrix. Here, $\gamma^\alpha$ denotes the coupling strength to the left (right) contact $\alpha$.
+        
+        \begin{figure*}[b]
+            \centering
+            \includegraphics[width=\textwidth]{zeroBiasOccupation}
+            \caption{\label{fig:numberoperators}Expectation value of occupation number operators $n_1$ and $n_2$.The emergence of a bound state at low temperatures is evident.}
+        \end{figure*}
+         
+        
+        In our calculation, the lead-molecule coupling (WBL) $\gamma=.010$ eV, the Coulomb repulsion $U=0.300$ eV, the first level is at $0.00$ eV and the second level at $0.030$ eV. We can immediately calculate the expectations of number operators, shown in fig~\ref{fig:numberoperators}.We observe the emergence of a bound state at low temperatures, evident in the exponential growth of $n_1$. In stark contrast, $n_0$ reaches its maximum and then rapidly falls off. Considering that we are dealing with the exact calculation of occupation for an Anderson-model, it is likely that we are observing evidence of the Kondo effect \cite{josherrereview}. This is typically evident in the conductance $\sigma(T)$, which decreases as a Fermi-liquid
+        until reaching a conductance minimum at the Kondo temperature $T_K$, after which it logarithmically grows until saturating because of low-temperature screening effects.
+        
+        Following \citet{meir}, we look primarily at the conductance $\mathscr{T}(\epsilon)$ versus the chemical potential $\epsilon$. In a non-equilibrium situation the Fermi energy is rather badly defined; even more so in a mesoscopic region. The Fermi energy is a bulk property of the Fermi liquid model which does not hold in the extended molecule region. As such, we will consider the full conductance spectrum and follow the conductance maximum.
+        
+        Fig~\ref{fig:transplot} displays the differential conductance $T(\epsilon)$. Note the four peaks that are evidence of interaction effects for our two-state model. The differential conductance traces are offset by the temperature for reasons of clarity. A clear transition to zero-occupation is evident as the temperature grows. Of particular interest is the nonzero occupied state at low temperature, which is non-symmetric.
+        
+        \begin{figure*}[b]
+            \centering
+            \includegraphics[width=\textwidth]{transportPlot}
+            \caption{\label{fig:transplot} Differential conductance $T(\epsilon)$, displaying the multiple peaks that are evidence of interaction effects for our two-state model. The differential conductance traces are offset by the temperature for reasons of clarity. A clear transition to zero-occupation is evident as the temperature grows. Of particular interest is the nonzero occupied state at low temperature, which is non-symmetric.}
+        \end{figure*}
+        
+        This state is clearly the bound-state that is responsible for the Kondo effect. Fig~\ref{fig:conductance} shows the average conductance {\color{red} We should probably follow the non-symmetric peak, so we can call it following the maximum.}, displaying clearly the polynomial decrease with temperature, followed by the conductance minimum, logarithmic rise and final screening saturation.
+        
+        \begin{figure*}[b]
+            \centering
+            \includegraphics[width=\textwidth]{zeroBiasConductanceLog}
+            \caption{\label{fig:conductance} Average of the differential conductance versus temperature. The clear transition from Fermi liquid-like behaviour to logarithmic scaling is evident followed by saturation is evident.}
+        \end{figure*}
+        
+        This indicates that the exact solution is truly exact and incorporates Kondo physics, contrary to many perturbation schemes that are often only valid away from the Kondo temperature $T_K$. Our exact solution thus does not suffer from difficulty in the crossover region. It thus shows excellent agreement with both theory and experiment \cite{Sasaki2000}.
+        
+        
+        
     \section{AH molecule}\label{sec:ahmolecule}
     \section{Discussion}\label{sec:discussion}
     \bibliography{references} 
