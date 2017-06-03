@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 \title{Strong capacitive interactions within the non-equilibrium Green's Function Formalism.}
-\author{Josko de Boer}
+\author{Josko de Boer \and Jose Celis Gil \and Jos Seldenthuis \and Jos Thijssen}
 \date{December 2016}
 \usepackage[square,numbers]{natbib}
 \bibliographystyle{abbrvnat}
@@ -23,18 +23,18 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-    Most work on interactions for molecular junctions have been performed within the Master equation approach. This approach has the benefit of incorporating vibrational excitations and interactions up to desired order. In this work we focus on the non-equilibrium Green's function formalism. We incorporate interactions and derive the many-body Green's function. The density matrix emerges as a self-consistent equation that is in principle exactly solvable. We first apply these principles to the case of a coulomb Island, a much studied and discussed nanoscopic device.  Having established both the basics and the Kondo physics of this device, we move on to consider the intrinsic and pronounced NDC effect in a single thiolated arylethynylene molecule with a 9,10-dihydroanthracene. We show that incorporation of strong capacitive interaction greatly improves the agreement between theory and experiment. The new theory has exciting promise for future studies of molecular junctions.
+    Most work on interactions for molecular junctions have been performed within the Master equation approach. This approach has the benefit of incorporating vibrational excitations and interactions up to desired order. In this work we focus on the non-equilibrium Green's function formalism. We incorporate interactions and derive the many-body Green's function. The density matrix emerges as a simple equation using the self-energy. We first apply these principles to the case of a Coulomb Island, a much studied and discussed nanoscopic device.  Having established both the basics and the Kondo physics of this device, we move on to consider the intrinsic and pronounced Negative Differential Conductance NDC effect in a single thiolated arylethynylene molecule with a 9,10-dihydroanthracene. We show that incorporation of strong capacitive interaction greatly improves the agreement between theory and experiment. The new theory has exciting promise for future studies of molecular junctions.
 \end{abstract}
 \begin{multicols}{2}
     
     \section{Introduction}
-        One of the challenges for the theory of molecular junction devices has always been to incorporate the details of specific molecules. One popular approach is to solve the Kohnn-Sham equations\cite{kohnsham}, which reformulate the many-body Schr\"dinger equation in terms of the electron density $n(\underline{r})=\sum_{\sigma,i}\:n_{\sigma i}(r)$. This is called Density-Functional theory (DFT) \cite{nobel1998}, which leads to the single-particle Hamiltonian of a specific molecule.  
+        One of the challenges for the theory of molecular junction devices has always been to incorporate the details of specific molecules. One popular approach is to solve the Kohnn-Sham equations\cite{kohnsham}, which reformulate the many-body Schr\"odinger equation in terms of the electron density $n(\underline{r})=\sum_{\sigma,i}\:n_{\sigma i}(r)$. This is called Density-Functional theory (DFT) \cite{nobel1998}, which leads to the single-particle Hamiltonian of a specific molecule.  
         
         If vibrational modes are of interest then the transport calculations are often done using the Master Equation (ME) approach \cite{beenakker}. The alternative is the non-equilibrium Green's function formalism (GF) approach. Both approaches struggle with accounting for strong interactions, which is is true of theoretical physics in general. 
         
         The method outlined here will incorporate strong \emph{capactive} interactions in the GF approach. It will emphasise the many-body character of the system and reconcile theory and experiment.
         
-        We will first derive and introduce the theory in section~\ref{sec:derivation}. To illustrate the effectiveness and completeness of the effect we will look at the Coulomb Island model in section~\ref{sec:island}. For a far more interesting example, in section~\ref{sec:ahmolecule} we look at the Non-Differential Conductance (NDC) effect in a single thiolated arylethynylene molecule (AH molecule) with a 9,10-dihydroanthracene core, where the theoretical and experimental current have been found to match qualitatively but not quantitatively \cite{perrinnano}. Finally, we discuss the findings of our theory and its future promises in section~\ref{sec:discussion}.
+        We will first derive and introduce the theory in section~\ref{sec:derivation}. To illustrate the effectiveness and completeness of the effect we will look at the Coulomb Island model in section~\ref{sec:island}. For a far more interesting example, in section~\ref{sec:ahmolecule} we look at the Negative Differential Conductance (NDC) effect in a single thiolated arylethynylene molecule (AH molecule) with a 9,10-dihydroanthracene core, where the theoretical and experimental current have been found to match qualitatively but not quantitatively \cite{perrinnano}. Finally, we discuss the findings of our theory and its future promises in section~\ref{sec:discussion}.
     
     \section{Derivation}\label{sec:derivation}
         Let us start with clearly defining the Anderson-like model:
@@ -75,8 +75,8 @@
         where in our case $\hat{A} = \hat{G^+}$, the single-particle Green's Function and $\hat{B}=\hat{\Sigma}^C$, the capacitive self-energy. We apply the expansion (equation~\ref{eq:expansion}) to the Coulomb Island single-particle Green's function:
         \begin{align*}
             \hat{G}^+(\epsilon) &= \left[ \begin{bmatrix} \epsilon - \epsilon_1 - \Sigma^\pm & \tau \\
-\tau & \epsilon - \epsilon_2 - \Sigma^\pm \end{bmatrix}^{-1} - \begin{pmatrix} U n_\uparrow & 0 \\ 0 & U n_\downarrow \end{pmatrix} \right]^{-1} \\
-            &= (1-\hat{n_\uparrow})(1-\hat{n_\downarrow}) \hat{A} + \hat{n_\uparrow} (1-\hat{n_\downarrow}) \left[ \hat{A}^{-1} - \hat{B}_1\right]^{-1} \\& + (1-\hat{n_\uparrow}) \hat{n_\downarrow} \left[ \hat{A}^{-1} - \hat{B}_2\right]^{-1} + \hat{n_\uparrow} \hat{n_\downarrow}, \left[\hat{A}^{-1} - \hat{B}_1 - \hat{B}_2 \right]^{-1}
+\tau & \epsilon - \epsilon_2 - \Sigma^\pm \end{bmatrix}^{-1} - \begin{pmatrix} U n_1 & 0 \\ 0 & U n_2 \end{pmatrix} \right]^{-1} \\
+            &= (1-\hat{n_1})(1-\hat{n_2}) \hat{A} + \hat{n_1} (1-\hat{n_2}) \left[ \hat{A}^{-1} - \hat{B}_1\right]^{-1} \\& + (1-\hat{n_1}) \hat{n_2} \left[ \hat{A}^{-1} - \hat{B}_2\right]^{-1} + \hat{n_1} \hat{n_2}, \left[\hat{A}^{-1} - \hat{B}_1 - \hat{B}_2 \right]^{-1}
         \end{align*}
         where we have gathered like products of number operators and have taken into account that $ n_\sigma^p = n_\sigma$ for occupation operators of a single spin-state.
         
@@ -148,38 +148,58 @@
         
         \begin{figure*}[b]
             \centering
-            \includegraphics[width=\textwidth]{zeroBiasOccupation}
+            \includegraphics[width=\textwidth]{fig/figure_1.png}
             \caption{\label{fig:numberoperators}Expectation value of occupation number operators $n_1$ and $n_2$.The emergence of a bound state at low temperatures is evident.}
         \end{figure*}
          
         
-        In our calculation, the lead-molecule coupling (WBL) $\gamma=.010$ eV, the Coulomb repulsion $U=0.300$ eV, the first level is at $0.00$ eV and the second level at $0.030$ eV. We can immediately calculate the expectations of number operators, shown in fig~\ref{fig:numberoperators}.We observe the emergence of a bound state at low temperatures, evident in the exponential growth of $n_1$. In stark contrast, $n_0$ reaches its maximum and then rapidly falls off. Considering that we are dealing with the exact calculation of occupation for an Anderson-model, it is likely that we are observing evidence of the Kondo effect \cite{josherrereview}. This is typically evident in the conductance $\sigma(T)$, which decreases as a Fermi-liquid
-        until reaching a conductance minimum at the Kondo temperature $T_K$, after which it logarithmically grows until saturating because of low-temperature screening effects.
+        In our calculation, the lead-molecule coupling (WBL) $\gamma=.010$ eV, the Coulomb repulsion $U=0.300$ eV, the first level is at $0.00$ eV and the second level at $0.030$ eV. We can immediately calculate the expectations of number operators, shown in fig~\ref{fig:numberoperators}.We observe the emergence of a bound state at low temperatures, evident in the exponential growth of $n_1$. In stark contrast, $n_0$ reaches its maximum and then rapidly falls off. Considering that we are dealing with the exact calculation of occupation for an Anderson-model, it is likely that we are observing evidence of the Kondo effect \cite{josherrereview}. This is typically evident in the conductance $\sigma(T)$, which decreases as a Fermi-liquid (polynomial) until reaching a conductance minimum at the Kondo temperature $T_K$, after which it grows logarithmically until saturating because of low-temperature screening effects.
         
         Following \citet{meir}, we look primarily at the conductance $\mathscr{T}(\epsilon)$ versus the chemical potential $\epsilon$. In a non-equilibrium situation the Fermi energy is rather badly defined; even more so in a mesoscopic region. The Fermi energy is a bulk property of the Fermi liquid model which does not hold in the extended molecule region. As such, we will consider the full conductance spectrum and follow the conductance maximum.
         
-        Fig~\ref{fig:transplot} displays the differential conductance $T(\epsilon)$. Note the four peaks that are evidence of interaction effects for our two-state model. The differential conductance traces are offset by the temperature for reasons of clarity. A clear transition to zero-occupation is evident as the temperature grows. Of particular interest is the nonzero occupied state at low temperature, which is non-symmetric.
+        Fig~\ref{fig:transplot} displays the differential conductance $T(\epsilon)$. Note the four peaks that are evidence of interaction effects for our two-state model. The differential conductance traces are offset by the temperature for reasons of clarity. A clear transition to zero-occupation is evident as the temperature grows.
         
         \begin{figure*}[b]
             \centering
-            \includegraphics[width=\textwidth]{transportPlot}
-            \caption{\label{fig:transplot} Differential conductance $T(\epsilon)$, displaying the multiple peaks that are evidence of interaction effects for our two-state model. The differential conductance traces are offset by the temperature for reasons of clarity. A clear transition to zero-occupation is evident as the temperature grows. Of particular interest is the nonzero occupied state at low temperature, which is non-symmetric.}
+            \includegraphics[width=\textwidth]{fig/figure_3.png}
+            \caption{\label{fig:transplot} Differential conductance $T(\epsilon)$, displaying the multiple peaks that are evidence of interaction effects for our two-state model. The differential conductance traces are offset by the temperature for reasons of clarity. A clear transition to zero-occupation is evident as the temperature grows.}
         \end{figure*}
         
-        This state is clearly the bound-state that is responsible for the Kondo effect. Fig~\ref{fig:conductance} shows the average conductance {\color{red} We should probably follow the non-symmetric peak, so we can call it following the maximum.}, displaying clearly the polynomial decrease with temperature, followed by the conductance minimum, logarithmic rise and final screening saturation.
+        This state is clearly the bound-state that is responsible for the Kondo effect. Fig~\ref{fig:conductance} shows the maximum conductance versus temperature, displaying clearly the polynomial decrease with temperature, followed by the conductance minimum, logarithmic rise and final screening saturation. It is interesting to note that there are two regions of the logarithmic rise before screening saturation, likely due to the different available levels.
         
         \begin{figure*}[b]
             \centering
-            \includegraphics[width=\textwidth]{zeroBiasConductanceLog}
+            \includegraphics[width=\textwidth]{fig/figure_5.png}
             \caption{\label{fig:conductance} Average of the differential conductance versus temperature. The clear transition from Fermi liquid-like behaviour to logarithmic scaling is evident followed by saturation is evident.}
         \end{figure*}
         
-        This indicates that the exact solution is truly exact and incorporates Kondo physics, contrary to many perturbation schemes that are often only valid away from the Kondo temperature $T_K$. Our exact solution thus does not suffer from difficulty in the crossover region. It thus shows excellent agreement with both theory and experiment \cite{Sasaki2000}.
-        
-        
-        
+        The maximum conductance plot of fig~\ref{fig:conductance} combined with the fractional charging indicates that the exact solution incorporates Kondo physics, contrary to many perturbation schemes that are often only valid away from the Kondo temperature $T_K$. Our exact solution thus does not suffer from difficulty in the crossover region. It shows excellent agreement with both theory and experiment \cite{Sasaki2000}. 
+         
     \section{AH molecule}\label{sec:ahmolecule}
+        
+        The single thiolated arylethynylene (AH) molecule Negative Differential Conductance (NDC) was explained by a relatively simple two-site model with Stark effect in \citet{perrinnano}. Contrary to the Coulomb Island, there is tunnelling between the two levels. Only the 'left' level is coupled to the left electrode and the 'right' level is coupled to the right electrode. The full specification of the model is:
+        \begin{align*}
+            H_\text{AH} &= \begin{pmatrix} \epsilon_0 + \frac{1}{2}\alpha V & -\tau \\-\tau &  \epsilon_0 - \frac{1}{2} \alpha V\end{pmatrix}, \\
+            \Gamma^L &= \begin{pmatrix} \gamma & 0 \\ 0 & 0 \end{pmatrix} ,\\
+            \Gamma^R &= \begin{pmatrix} 0 & 0 \\ 0 & \gamma \end{pmatrix} ,\\
+            H' &= \frac{1}{2} U \hat{n}_L \hat{n}_R + \frac{1}{2} U \hat{n}_R \hat{n}_L.
+        \end{align*}
+        The model is thus exactly of the class of models discussed above. The transport eigenvalues are $\epsilon_\pm = \epsilon_0 \pm \frac{1}{2} \sqrt{\alpha^2 V^2 + 4\tau^2}$ and we can expect peaks in current at $V = \pm \sqrt{ \frac{4\tau^2}{1-\alpha^2}}$, when the transport eigenvalue intersects the symmetrically distributed bias $\pm \frac{V}{2}$. Of course there is a second set of transport eigenvalues at $\epsilon_\pm + U$, which didn't feature in the experiment. However, a fractionally charged molecule might experience a coulomb blockade because of it.
+        
+        In figure~\ref{fig:perrinmolecule}, we display results for the AH molecule of \citet{perrinnano}. The green line in the top figure is the experimentally measured current from Perrin 's experiments averaged over a number of separation distances. The theoretical current is displayed with the same maximum current as the experiment, but the ratio is reported on top. It clearly reproduces the NDC effect, the location of the peaks and the flatness in between the two peaks. The peaks are also exactly located at the predicted value. The slope of the figure emphasises that fact. The occupancy of the two levels is clearly anti symmetric as expected from the properties of the system. Additionally, the occupancy shows a peak at the same location before saturating to $\braket{n_{L,R}}\approx0.5$.
+    
+        Strikingly, the difference in maximum current is within one order of magnitude for the new theory while \citet{perrinnano} reported a ratio of $1.4\cdot10^{4}$. However, the current drop off after reaching peak current is predicted significantly steeper than it was for \citet{perrinnano}.  {\color{red} which can be for many reasons (ie tunnelling etc)}
+        
+        
+        
+    \begin{figure*}[b]
+        \centering
+        \includegraphics[width=\textwidth]{fig/figure_gam0102alpha50tau024capacitive35points200.png}
+        \caption{\label{fig:perrinmolecule} Characteristics of the low-temperature DIH molecule. The calculated current shows great improvement in amplitude and correctly reproduces the NDC features. The drop off after reaching peak current  is faster than found in the experiment (see main text). The differential conductance is nicely symmetric and both show peaks at the predicted value $\pm\sqrt{\frac{4\tau^2}{1-\alpha^2}}$. The occupation of the dot is clearly relevant, as it is fractionally charged at all biases.}
+    \end{figure*}
+    
     \section{Discussion}\label{sec:discussion}
+    The authors are extremely awesome.
     \bibliography{references} 
 \end{multicols}
 \end{document}
