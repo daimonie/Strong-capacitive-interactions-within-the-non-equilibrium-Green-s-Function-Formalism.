@@ -122,10 +122,12 @@
         \end{align}
         in general, the expression becomes:
         \begin{align}\label{eq:mbgf}
-        \mathscr{G}^\pm &= \sum_\kappa \left(\prod_{i\in\kappa} n_i \prod_{j\notin \kappa} (1-n_j) \right) \left[G^{-1} - \sum_{i\in\kappa} \sum_{j\notin \kappa} U_{ij}\right]^{-1}
+        \mathscr{G}^\pm &= \sum_\kappa \left(\prod_{i\in\kappa} n_i \prod_{j\notin \kappa} (1-n_j) \right) \left[G^{-1} - \sum_{i\in\kappa} \sum_{j\notin \kappa} U_{ij}\right]^{-1}m \\
+        \nonumber &= \sum_\kappa \left(\prod_{i\in\kappa} n_i \prod_{j\notin \kappa} (1-n_j) \right) G^{\kappa\pm},
         \end{align}
+        where $G^{\kappa\pm}$ is a shorthand. Clearly, the expectation value is just $\mathscr{G} = \sum_\kappa \left|C_\kappa\right|^2 G^{\kappa}$. This is the sought-after expansion in the contributions of the different many-body states.
                   
-        Nevertheless,we still have to consider the problem of determining the density matrix. First, recall the single-particle state occupation numbers:
+        Nevertheless, we still have to consider the problem of determining the expectation values of number operators. First, recall the single-particle state occupation numbers:
         \begin{align*}
             \braket{\hat{n}_i} &= \sum_{\kappa: i\in \kappa} P_{\kappa\kappa},
         \end{align*}
@@ -133,17 +135,15 @@
         \begin{align}
             K_{i\beta} = \begin{cases} 1 & \quad i\&B=i, \\ 0 & \quad\text{otherwise}\end{cases},
         \label{eq:kmatrix}\end{align}
-        where $\&$ is the binary \emph{and} operator. 
+        where $\&$ is the binary \emph{and} operator.
         
-        \section{Deprecated/old}
-        The vector of occupation numbers can also be obtained from the (many-body) lesser Green's function at $t=t'$:
-        \begin{align} 
-            \braket{n_i} &= \sum_{\kappa} \left|C_\kappa\right|^2 \braket{\kappa \left| d_i^\dagger (t) d_i (t) \right| \kappa} \nonumber\\   
-            &= \sum_{\kappa} \left|C_\kappa\right|^2 \int^\infty_{-\infty} \frac{d\epsilon}{2\pi\imath} \left(-\mathscr{G}^{\kappa}_{ii} (\epsilon)\right) \nonumber\\
-            &= \sum_{\kappa} \left|C_\kappa\right|^2 \int^\infty_{-\infty} \frac{d\epsilon}{2\pi} \left[ \sum_\alpha f_\alpha(\epsilon) \mathscr{G}^{\kappa+}(\epsilon) \Gamma^\alpha \mathscr{G}^{\kappa-}(\epsilon)\right]_{ii} \nonumber\\ 
-            &= \sum_\kappa W_{i\kappa} P_\kappa, \label{eq:wmatrix}
-        \end{align}
-        where the lesser self-energy is substituted from both the Keldysh equation~\cite{diventra} and the fluctuation-dissipation theorem~\cite{haugjauho}. Applying this theorem requires that the states are explicitly known for the many-body system, something that we have already assumed with not mixing eigenstates.       
+        We can also find $\braket{n_i}$ via the lesser Green's function:
+        \begin{align*}
+            \braket{n_i} &= \lim_{t\rightarrow t'} \frac{\hbar}{\imath} \braket{\mathscr{G}^<_{ii}(t-t')}, \\
+            &= \sum_\kappa \left|C_\kappa\right|^2 \int \frac{d\epsilon}{2 \pi \imath} G^{\kappa<}, \\
+            &= \sum_\kappa \left|C_\kappa\right|^2 \int \frac{d\epsilon}{2 \pi} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\kappa+} \Gamma^\alpha G^{\kappa-}\right]_{ii},
+        \end{align*}
+        where the penultimate step utilises both the Keldysh equation \cite{diventra} and the Fluctuation-Dissipation theorem \cite{haugjauho}.      
          
         It is important to remember that the fluctuation-dissipation theorem specified the Fermi-Dirac distribution on the \emph{contacts}, thereby introducing finite bias as a relevant parameter for the density-matrix solution. We have found the following equations for $\braket{\underline{n}}$:
         \begin{align}
