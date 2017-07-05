@@ -30,7 +30,7 @@
     \section{Introduction}
         A very common issue in the area of molecular electronics is the difficulty to find quantitative agreement between the theory and the experiments. This makes the design and prediction of functioning electronic devices based on molecules harder.
         
-        Part of this issue is due to the difficulty to to incorporate all the details of specific molecules in the description of molecular junctions. Many-body techniques, with a single-particle picture are often used to describe these systems \cite{Tsuneda2014}. One of the most popular methods used nowadays consists of an approach where the electronic orbitals are solutions of a Schr\"odinger equation that depends on the electron density. This approach, called density functional theory (DFT), is the result of Hohenberg, Kohn and Sham work \cite{Hohenberg1964, kohnsham, nobel1998} and has proven to be a highly competitive method for a wide range of applications.
+        Part of this issue is due to the difficulty to to incorporate all the details of specific molecules in the description of molecular junctions. Many-body techniques, with a single-particle picture are often used to describe these systems \cite{Tsuneda2014}. One of the most popular methods used nowadays consists of an approach where the electronic orbitals are solutions of a Schr\"odinger equation that depends on the electron density. This approach, called density functional theory (DFT), is the result of Hohenberg, Kohn and Sham work \cite{Hohenberg1964, kohnsham, nobel1998} and has proven to be a highly competitive method for a wide range of applications. \textcolor{red}{In the calculations you are not using DFT at all, so maybe it is better to remove this part}
         
         When a molecule is coupled to metallic electrodes and a bias voltage is applied over the molecule which causes current to flow, then the system does not have a well-defined ground state. For such a system, trying to solve the Schr\"odinger equation directly is unfeasible. Non-equilibrium Green's Functions (NEGF) methods provide a systematic approach to incorporate interactions with an infinitely large environment including bias. NEGF are regularly used to calculate current and charge densities in non-equilibrium many-body transport problems \cite{Mattuck1976, Jauho1994, Haug1997, Datta1997}. 
          
@@ -42,9 +42,11 @@
             
         In the present paper, we present a method, where making use of the NEGF approach, we incorporate strong capacitive interactions \emph{capactive} in molecular junctions. This method makes emphasis in the many-body character of the system and results in a better agreement between theory and experiments.
         
-        In section~\ref{sec:derivation}, we derive and introduce the theory behind our method and in section~\ref{sec:island} we illustrate its effectiveness and completeness by mean of the Coulomb Island model. For a far more interesting example, in section~\ref{sec:ahmolecule} we look at the Negative Differential Conductance (NDC) found by Perrin et. al. \cite{perrinnano} in a single thiolated arylethynylene molecule (AH molecule) with a 9,10-dihydroanthracene core, where the theoretical and experimental current have been found to match qualitatively but not quantitatively. Finally, we discuss the findings of our theory and its future promises in section~\ref{sec:discussion}.
+        In section~\ref{sec:derivation}, we derive and introduce the theory behind our method and in section~\ref{sec:island} we illustrate its effectiveness and completeness by mean of the Coulomb Island model. For a novel example we look at the Negative Differential Conductance (NDC) found by Perrin et. al. \cite{perrinnano} in a single thiolated arylethynylene molecule (AH molecule) with a 9,10-dihydroanthracene core in section~\ref{sec:ahmolecule}, where the theoretical and experimental current have been found to match qualitatively but not quantitatively. Finally, we discuss the findings of our theory and its future promises in section~\ref{sec:discussion}.
 
-
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
     
     \section{Derivation}\label{sec:derivation}
         Let us start with defining a generalised Anderson model for a central region with energy spectrum $\epsilon_i$ (operators $\hat{d_i}, \hat{d_i}^\dagger$) coupled to leads (operators $\hat{c}_k, \hat{c}_k^\dagger$):
@@ -63,8 +65,9 @@
     
         To find the Green's Function $G(t,t')$ we use the equation-of-motion method. The definition of the (retarded) Green's function is:
        \begin{align*}
-        G_{ij}^+ &= - \frac{\imath}{\hbar} \theta(t-t^\prime) \left\{ \hat{d}_i(t), \hat{d}_j^\dagger(t^\prime) \right\},
-        \end{align*}
+        G_{ij}^+(t,t') &= - \frac{\imath}{\hbar} \theta(t-t^\prime) \left\{ \hat{d}_i(t), \hat{d}_j^\dagger(t^\prime) \right\},
+        \end{align*} 
+        
         so that the full time derivative takes the form:
         \begin{align}
         \imath\hbar \dot{G}_{ij}^+ &= \delta_{ij} \delta(t - t^\prime) + \theta(t-t^\prime) \left\{ \dot{\hat{d}}_i (t), \hat{d}_j^\dagger (t')\right\},
@@ -86,8 +89,8 @@
         we have an expression that can be written as a matrix product, but still involves operators. This can be remedied by applying the following expansion of operators\red{[citation]}:
         \begin{align}
         \left[ \hat{A}^{-1} - \hat{B}\right]^{-1} &=\hat{A} + \hat{A}\hat{B}\hat{A} + \hat{A}\hat{B}\hat{A}\hat{B}\hat{A} + \ldots,
-        \label{eq:expansion} \\
-        &= \hat{A} \sum_n \left(\hat{B}\hat{A}\right)^n
+         \nonumber\\
+        &= \hat{A} \sum_n \left(\hat{B}\hat{A}\right)^n\label{eq:expansion}
         \end{align} 
         where we will attempt to recover a form similar to that found in \citet{haugjauho}, a sum of the contributions of different many-body states. The new object will be called the \emph{many-body} Green's function and be denoted by the symbol $\mathscr{G}$:
         \begin{align}
@@ -143,7 +146,11 @@
             &= \sum_\kappa \left|C_\kappa\right|^2 \int \frac{d\epsilon}{2 \pi \imath} G^{\kappa<}, \\
             &= \sum_\kappa \left|C_\kappa\right|^2 \int \frac{d\epsilon}{2 \pi} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\kappa+} \Gamma^\alpha G^{\kappa-}\right]_{ii},
         \end{align*}
-        where the penultimate step utilises both the Keldysh equation \cite{diventra} and the Fluctuation-Dissipation theorem \cite{haugjauho}.      
+        where the penultimate step utilises both the Keldysh equation \cite{diventra} and the Fluctuation-Dissipation theorem \cite{haugjauho}. We then define $W$:
+        \begin{align}
+        \label{eq:wmatrix}
+        W_{i\kappa} &= \int \frac{d\epsilon}{2 \pi} \left[ \sum_\alpha f_\alpha(\epsilon) G^{\kappa+} \Gamma^\alpha G^{\kappa-}\right]_{ii}
+        \end{align}
          
         It is important to remember that the fluctuation-dissipation theorem specified the Fermi-Dirac distribution on the \emph{contacts}, thereby introducing finite bias as a relevant parameter for the density-matrix solution. We have found the following equations for $\braket{\underline{n}}$:
         \begin{align}
@@ -153,8 +160,13 @@
         
         However, we must consider the implications of a null-space containing more than one vector. The physical quantity, $\braket{\underline{n}}$ is certainly unique. This implies that all vectors in the null-space result in the same value of the physical quantity. As a result, any vector in the null-space suffices to calculate the expectations of number occupation operators. This then immediately results in a unique green function which allows us to calculate transport properties of the equation.
 
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+
     \section{The Coulomb Island}\label{sec:island}
-        We are now ready to perform the calculations for a Coulomb Island. Following \citet{haugjauho}, we will set $\hat{H}_\tau = 0$. We need to be careful with the incorporation of the leads. In the penultimate step for equation~\ref{eq:wmatrix}, we note a summation over each lead due to the fluctuation-dissipation theorem. 
+        We are now ready to perform the calculations for a Coulomb Island. Following \citet{haugjauho}, we will set $\hat{H}_\tau = 0$. We need to be careful with the incorporation of the leads. In equation~\ref{eq:wmatrix},t he leads are incorporated through the Keldysh equation and noticably the Fluctuation-Dissipation theorem. This incorporates a temperature-dependency in the lead-molecule interaction and resulting occupation.
         
         For a two-state system (spin up, spin down) we find:
         \begin{align*}
@@ -168,8 +180,9 @@
             \caption{\label{fig:numberoperators}Expectation value of occupation number operators $n_1$ and $n_2$.The emergence of a bound state at low temperatures is evident.}
         \end{figure*}
          
+        \textcolor{red}{How did you get these values?}
         
-        In our calculation, the lead-molecule coupling (WBL) $\gamma=.010$ eV, the Coulomb repulsion $U=0.300$ eV, the first level is at $0.00$ eV and the second level at $0.030$ eV. We can immediately calculate the expectations of number operators, shown in fig~\ref{fig:numberoperators}.We observe the emergence of a bound state at low temperatures, evident in the exponential growth of $n_1$. In stark contrast, $n_0$ reaches its maximum and then rapidly falls off. Considering that we are dealing with the exact calculation of occupation for an Anderson-model, it is likely that we are observing evidence of the Kondo effect \cite{josherrereview}. This is typically evident in the conductance $\sigma(T)$, which decreases as a Fermi-liquid (polynomial) until reaching a conductance minimum at the Kondo temperature $T_K$, after which it grows logarithmically until saturating because of low-temperature screening effects.
+        In our calculation, the lead-molecule coupling (WBL) $\gamma=.010$ eV, the Coulomb repulsion $U=0.300$ eV, the first level is at $0.00$ eV and the second level at $0.030$ eV following \cite{meir}. We can immediately calculate the expectations of number operators, shown in fig~\ref{fig:numberoperators}. We observe the emergence of a bound state at low temperatures, evident in the exponential growth of $n_1$. In stark contrast, $n_0$ reaches its maximum and then rapidly falls off. Considering that we are dealing with the exact calculation of occupation for an Anderson-model, it is likely that we are observing evidence of the Kondo effect \cite{josherrereview}. This is typically evident in the conductance $\sigma(T)$, which decreases as a Fermi-liquid (polynomial) until reaching a conductance minimum at the Kondo temperature $T_K$, after which it grows logarithmically until saturating because of low-temperature screening effects.
         
         Following \citet{meir}, we look primarily at the conductance $\mathscr{T}(\epsilon)$ versus the chemical potential $\epsilon$. In a non-equilibrium situation the Fermi energy is rather badly defined; even more so in a mesoscopic region. The Fermi energy is a bulk property of the Fermi liquid model which does not hold in the extended molecule region. As such, we will consider the full conductance spectrum and follow the conductance maximum.
         
@@ -215,7 +228,9 @@
     \end{figure*}
     
     \section{Discussion}\label{sec:discussion}
-    The authors are extremely awesome.
+    \textcolor{red}{ Maybe the referee, Jos, or one of the coauthors (me), are going to ask you if it is possible to implement this procedure in DFT+NEGF calculations}
+    
+    
     \bibliography{references} 
 \end{multicols}
 \end{document}
