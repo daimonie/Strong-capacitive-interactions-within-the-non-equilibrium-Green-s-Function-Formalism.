@@ -84,13 +84,13 @@
         \begin{align*}
         \hat{\Sigma}^C_{il} &= \sum_k U_{lk} \hat{n}_k \delta_{li},
         \end{align*}
-        we have an expression that can be written as a matrix product, but still involves operators. This can be remedied by applying the following expansion of operators\red{[citation, BCH/Z or just point to Dyson]}:
+        we have an expression that can be written as a matrix product, but still involves operators. We can remedy this by an expansion:
         \begin{align}
         \left[ \hat{A}^{-1} - \hat{B}\right]^{-1} &=\hat{A} + \hat{A}\hat{B}\hat{A} + \hat{A}\hat{B}\hat{A}\hat{B}\hat{A} + \ldots,
          \nonumber\\
         &= \hat{A} \sum_n \left(\hat{B}\hat{A}\right)^n\label{eq:expansion}
         \end{align} 
-        which allows us to recover a form similar to that found in \citet{haugjauho}, a sum of the contributions of different many-body states. For this, we apply the expansion to equation~\ref{eq:eomgf} which relies explicitly on the capacitive self-energy. The new Green's function will be called the \emph{many-body} Green's function and be denoted by the symbol $\mathscr{G}$:
+        which is recognised as a form of the Dyson equation, $G = g + g\Sigma g + g\Sigma g \Sigma g + \ldots$ but ultimately derives from the Baker-Campbell-Hausdorff formula  \cite{Mattuck1976}. It allows us to recover a form similar to that found in \citet{haugjauho}, a sum of the contributions of different many-body states. For this, we apply the expansion to equation~\ref{eq:eomgf} which relies explicitly on the capacitive self-energy. The new Green's function will be called the \emph{many-body} Green's function and be denoted by the symbol $\mathscr{G}$:
         \begin{align}
             \mathscr{\hat{G}}^\pm(\epsilon) &= \left[ \epsilon - \epsilon_i - \tau \pm \Sigma - \hat{\Sigma^C}\right]^{-1}, \\
             &= \left[ \left(G^\pm\right)^{-1}- \hat{\Sigma^C}\right]^{-1} ,\nonumber
