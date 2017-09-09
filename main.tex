@@ -49,7 +49,7 @@
     \section{Derivation}\label{sec:derivation}
         Let us start by defining a generalised Anderson model for a central region with energy spectrum $\epsilon_i$ (operators $\hat{d_i}, \hat{d_i}^\dagger$) coupled to leads (operators $\hat{c}_k, \hat{c}_k^\dagger$):
         \begin{align}
-            H &= H_1 + H_2 + H_\tau + H_\text{ML} + H', \label{eq:hamiltonian}
+            H &= H_1 + H_2 + H_\tau + H_\text{CL} + H', \label{eq:hamiltonian}
         \end{align}
         where
         \begin{align*}
@@ -81,16 +81,16 @@
         where the first four commutators are well known and can be formulated as self-energies using the Dyson equation. The fourth commutator involves an annihilation operator working on the lead. However, it can be recovered as a self-energy by applying the EOM to find the lead-molecule Green's function $G_{kj}$, leading to the lead-molecule coupling self-energy $\Sigma^\pm$.        
         
         The last commutator still involves operators $\hat{n_l}$ and is not clearly a matrix product. By defining the capacitive self-energy: 
-        \begin{align*}
+        \begin{align}
         \hat{\Sigma}^C_{il} &= \sum_k U_{lk} \hat{n}_k \delta_{li},
-        \end{align*}
+        \end{align}
         we have an expression that can be written as a matrix product, but still involves operators. We can remedy this by an expansion:
         \begin{align}
         \left[ \hat{A}^{-1} - \hat{B}\right]^{-1} &=\hat{A} + \hat{A}\hat{B}\hat{A} + \hat{A}\hat{B}\hat{A}\hat{B}\hat{A} + \ldots,
          \nonumber\\
         &= \hat{A} \sum_n \left(\hat{B}\hat{A}\right)^n\label{eq:expansion}
         \end{align} 
-        which is recognised as a form of the Dyson equation, $G = g + g\Sigma g + g\Sigma g \Sigma g + \ldots$ but ultimately derives from the Baker-Campbell-Hausdorff formula  \cite{Mattuck1976}. It allows us to recover a form similar to that found in \citet{haugjauho}, a sum of the contributions of different many-body states. For this, we apply the expansion to equation~\ref{eq:eomgf} which relies explicitly on the capacitive self-energy. The new Green's function will be called the \emph{many-body} Green's function and be denoted by the symbol $\mathscr{G}$:
+        which is recognised as a form of the Dyson equation, $\left(G = g + g\Sigma g + g\Sigma g \Sigma g + \ldots\right)$ but ultimately derives from the Baker-Campbell-Hausdorff formula  \cite{Mattuck1976}. It allows us to recover a form similar to that found in \citet{haugjauho}, a sum of the contributions of different many-body states. For this, we apply the expansion to equation~\ref{eq:eomgf} which relies explicitly on the capacitive self-energy. The new Green's function will be called the \emph{many-body} Green's function and be denoted by the symbol $\mathscr{G}$:
         \begin{align}
             \mathscr{\hat{G}}^\pm(\epsilon) &= \left[ \epsilon - \epsilon_i - \tau \pm \Sigma - \hat{\Sigma^C}\right]^{-1}, \\
             &= \left[ \left(G^\pm\right)^{-1}- \hat{\Sigma^C}\right]^{-1} ,\nonumber
@@ -98,7 +98,10 @@
         where $G^\pm$ denotes the Green's Function when capacitive interaction is not included. It can be shown that the lesser (greater) many-body Green's function, like the retarded (advanced) Green's function, becomes a summation over the contributions of different many-body states.
         
         
-        We will first look at the example of a two-state model, where $\hat{\Sigma}^C = \begin{pmatrix} U_{12}n_2 & 0 \\ 0 & U_{21} n_1\end{pmatrix}=C^1 n_1 + C^2 n_2$. For the first few orders, we find:
+        We will first look at the example of a two-state model, where \begin{align}
+        \hat{\Sigma}^C &= \begin{pmatrix} U_{12}n_2 & 0 \\ 0 & U_{21} n_1\end{pmatrix}\nonumber\\&=C^1 n_1 + C^2 n_2.
+        \end{align}
+        For the first few orders, we find:
         \begin{align*}
             \left(\mathscr{G}^\pm\right)^{(0)} &= (1-n_1)(1-n_2)G + n_1(1-n_2)G + (1-n_1) n_2 G \\&+ n_1 n_2 G,  
         \end{align*}
